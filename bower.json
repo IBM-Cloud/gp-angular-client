@@ -1,0 +1,33 @@
+{
+  "name": "gp-angular",
+  "description": "An AngularJS SDK to the Globalization Pipeline on IBM's Bluemix",
+  "version": "1.0.0",
+  "moduleType": "amd",
+  "author": "Scott Russell <icuintl@us.ibm.com>",
+  "license": "Apache 2.0",
+  "main": ["src/gp-angular.js"],
+  "keywords": [
+    "angular",
+    "globalizationPipeline",
+    "rest",
+    "sdk",
+    "ibm",
+    "bluemix",
+    "client-side"
+  ],
+  "ignore": [
+    "docs",
+    "demoApp",
+    "test",
+    ".gitignore",
+    "index.html"
+  ],
+  "homepage": "https://github.com/IBM-Bluemix/gp-angular-client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBM-Bluemix/gp-angular-client"
+  },
+  "bugs": {
+    "url": "https://github.com/IBM-Bluemix/gp-angular-client/issues"
+  }
+}

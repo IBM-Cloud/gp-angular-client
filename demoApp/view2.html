@@ -1,0 +1,66 @@
+<!-- 
+ * Copyright IBM Corp. 2015
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+ <div>
+   Controller: {{view.name}} -- Bundle: {{view.bundle}}<br>
+    
+  <table>
+    <tr>
+        <td>
+            <h1 gp-translate="TITLE"></h1>
+        </td>
+        <td>
+            &lt;h1 gp-translate="TITLE"&gt;
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h2><span gp-translate="HELLO"></span></h2>
+        </td>
+        <td>
+            &lt;span gp-translate="HELLO"&gt;
+        </td>
+    </tr>
+    <tr>
+        <td>
+             <span><b><span gp-translate="UNDEFINED_KEY"></span></b></span>
+        </td>
+        <td>
+             &lt;span gp-translate="UNDEFINED_KEY"&gt;
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span><b><span gp-translate="GOODBYE" lang="de"></span></b> &gt;&gt;language NOT available&lt;&lt;</span>
+        </td>
+        <td>
+            &lt;span gp-translate="GOODBYE" lang="de"&gt;
+        </td>
+    </tr>
+  </table>        
+
+   
+</div>
+
+  <hr>        
+
+  <div ng-controller="SupportedLanguagesController">
+    <p>Languages available in the current bundle:
+      <select ng-model="selectedLanguage" ng-options="aLang for aLang in availableLangs" ng-change="switchLanguage(selectedLanguage)">
+        <option value="">Select Language</option>
+      </select>
+    </p>
+  </div> 
+      
