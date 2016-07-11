@@ -20,9 +20,9 @@ AngularJS for the Globalization Pipeline on IBM's Bluemix
 -->
 
 #  What is this? 
-This project provides an SDK for AngularJS developers to dynamically utilize the [Globalization Pipeline](https://www.ng.bluemix.net/docs/services/GlobalizationPipeline/index.html) running on [Bluemix](http://www.ng.bluemix.net) IBM's next-generation cloud app development platform. 
-
-
+This project provides an SDK for AngularJS developers to dynamically utilize the
+[Globalization Pipeline](https://github.com/IBM-Bluemix/gp-common#globalization-pipeline)
+Bluemix service.
 
 The SDK provides familiar AngularJS constructs, in the form of a Directive and a Service, that encapsulate usage of the restful API of the Globalization Pipeline to enable globalization of your application.
 
