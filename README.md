@@ -26,7 +26,6 @@ Bluemix service.
 
 The SDK provides familiar AngularJS constructs, in the form of a Directive and a Service, that encapsulate usage of the restful API of the Globalization Pipeline to enable globalization of your application.
 
-
 ## Licensing
 This project is licensed under the [Apache License](./LICENSE.txt).
 
@@ -36,7 +35,9 @@ This project is licensed under the [Apache License](./LICENSE.txt).
 _Bower_ release installation:
 
     $ bower install gp-angular-client
-    
+
+[![Bower version](https://badge.fury.io/bo/gp-angular-client.svg)](https://badge.fury.io/bo/gp-angular-client)    
+
 _Manaual_ installation:
 
     $ git clone git://github.com/IBM-Bluemix/gp-angular-client    
