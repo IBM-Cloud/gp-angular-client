@@ -1,5 +1,5 @@
 /*
- * Copyright IBM Corp. 2015
+ * Copyright IBM Corp. 2015, 2016
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -116,7 +116,8 @@ module.provider('GlobalizationPipelineService', [ function() {
          */
         function getBundleInfo(bundleId) {
             var restDefer = $q.defer();
-            var url = gp_config.credentials.uri + '/rest/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/' + bundleId;
+            var url = (gp_config.credentials.url || gp_config.credentials.uri)
+                  + '/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/' + bundleId;
             if(DEBUG) {
                 console.log('[getBundleInfo] GET ' + url);
             }
@@ -263,7 +264,7 @@ module.provider('GlobalizationPipelineService', [ function() {
                   }
                   languageDeferred.resolve(lang);
               }, function errorCallback(error) {
-                  var result = '[normalizeLanguage] ERR: ' + error.toString();
+                  var result = '[normalizeLanguage] ERR: ' + JSON.stringify(error);
                   logDebug(result);
                   console.log("error: ", error);
                   languageDeferred.reject(result);
@@ -374,7 +375,8 @@ module.provider('GlobalizationPipelineService', [ function() {
 
             getCache().addBundle(gpBundleKey, languageId, restDefer.promise);
 
-            var url = gp_config.credentials.uri + '/rest' + '/' + gpBundleKey + '/' + languageId;
+            var url = (gp_config.credentials.url || gp_config.credentials.uri)
+             +  '/' + gpBundleKey + '/' + languageId;
             if(DEBUG) {
                 console.log('[newCacheRequest] GET ' + url);
             }
