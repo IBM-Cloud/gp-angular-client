@@ -20,6 +20,8 @@ AngularJS for the Globalization Pipeline on IBM's Bluemix
 -->
 
 #  What is this? 
-This demo app provides an example of using the SDK for AngularJS developers to dynamically utilize the [Globalization Pipeline](https://www.ng.bluemix.net/docs/services/GlobalizationPipeline/index.html) running on [Bluemix](http://www.ng.bluemix.net) IBM's next-generation cloud app development platform. 
+This demo app provides an example of using the SDK for AngularJS developers to dynamically utilize the
+[Globalization Pipeline](https://github.com/IBM-Bluemix/gp-common#globalization-pipeline)
+Bluemix service. 
 
 Use the petrolService.json & petrolService_view2.json bundle files to upload into your Globalization Pipeline service instance. Follow the instructions in the main README.md. 
