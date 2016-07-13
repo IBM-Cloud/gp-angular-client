@@ -26,10 +26,6 @@ Bluemix service.
 
 The SDK provides familiar AngularJS constructs, in the form of a Directive and a Service, that encapsulate usage of the restful API of the Globalization Pipeline to enable globalization of your application.
 
-## Licensing
-This project is licensed under the [Apache License](./LICENSE.txt).
-
-
 ## Installation
 
 _Bower_ release installation:
@@ -38,30 +34,30 @@ _Bower_ release installation:
 
 [![Bower version](https://badge.fury.io/bo/gp-angular-client.svg)](https://badge.fury.io/bo/gp-angular-client)    
 
-_Manaual_ installation:
+_Manual_ installation:
 
-    $ git clone git://github.com/IBM-Bluemix/gp-angular-client    
+    $ git clone git://github.com/IBM-Bluemix/gp-angular-client.git    
 
 # Usage
+
+### Getting started
+
+To get started, you should familiarize yourself with the service itself. A
+good place to begin is by reading the [Quick Start Guide](https://github.com/IBM-Bluemix/gp-common#quick-start-guide) and the official [Getting Started with IBM Globalization ](https://www.ng.bluemix.net/docs/services/GlobalizationPipeline/index.html) documentation.
+
+The documentation explains how to find the service on Bluemix, create a new service instance, create a new bundle, and access the translated messages.
 
 ### Overview
 The designed workflow for using this SDK is as follows. Application bundle data is uploaded onto a Globalization Pipeline instance running on Bluemix and any desired language translations are selected for that bundle. A bundle user of type READER is defined for that service. Once those pieces are configured, data is pulled from Bluemix and used to complete the SDK configuration in the client app. (see Configuration below) 
 
 The fields needed to configure this SDK are:
 
-* uri
+* url
 * instanceId
 * userId
 * password
 
-The uri & instanceId fields are taken from the credentials of your service instance of the Globalization Pipleline
-
-![Create new Globalization Pipeline service instance](https://ibm.box.com/shared/static/v59b5a19qjkfhxqaiwauz37nd9d8o8m2.gif)
-
-
-The userId & password come from the READER user defined to have access to the bundle(s) under the [Users] tab. IMPORTANT! The password is only available when the user is first defined. It can NOT be obtained later.
-
-![Create new bundle](https://ibm.box.com/shared/static/8p2ytfm28smh29rl50c581gcfb4hsz8z.gif)
+The url & instanceId fields are taken from the credentials of your service instance of the Globalization Pipeline
 
 Once the GlobalizationPipelineService configuration is complete and you have set your application configuration to those values, you can use the custom `gp-translate` directive or service functions to handle the dynamic globalization needs of your app.
 
@@ -164,10 +160,35 @@ Example of configuration
         targetLang: "es",                               // optional default language
         loadingText: "loading...",                      // optional text displayed while waiting on a GP promise
         credentials: {                                  
-            uri: "https://YOUR-SERVICE-INSTANCE-URL",   // required
+            url: "https://YOUR-SERVICE-INSTANCE-URL",   // required
             instanceId: "YOUR-INSTANCE-ID",             // required
             userId: "YOUR-BUNDLES-READER-ID",           // required
             password: "YOUR-BUNDLES-READER-PASSWORD"    // required
         }});
 }])
 ```
+
+Community
+---------
+* View or file GitHub [Issues](https://github.com/IBM-Bluemix/gp-angular-client/issues)
+* Connect with the open source community on [developerWorks Open](https://developer.ibm.com/open/ibm-bluemix-globalization-pipeline-service/angular-sdk/)
+
+Contributing
+------------
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+License
+-------
+Apache 2.0. See [LICENSE.txt](LICENSE.txt).
+
+> Licensed under the Apache License, Version 2.0 (the "License");
+> you may not use this file except in compliance with the License.
+> You may obtain a copy of the License at
+>
+> http://www.apache.org/licenses/LICENSE-2.0
+>
+> Unless required by applicable law or agreed to in writing, software
+> distributed under the License is distributed on an "AS IS" BASIS,
+> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+> See the License for the specific language governing permissions and
+> limitations under the License.
