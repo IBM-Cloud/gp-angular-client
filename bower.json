@@ -1,7 +1,7 @@
 {
   "name": "gp-angular",
   "description": "An AngularJS SDK for the Globalization Pipeline on IBM's Bluemix",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "moduleType": "amd",
   "author": "Scott Russell <icuintl@us.ibm.com>",
   "license": "Apache 2.0",

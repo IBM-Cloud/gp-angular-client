@@ -34,6 +34,17 @@ module.provider('GlobalizationPipelineService', [ function() {
 
     this.setGpConfig = function(newOptions) {
         gp_config = angular.copy(newOptions);
+        // verify URL
+        gp_config.credentials.url = gp_config.credentials.url || gp_config.credentials.uri;
+        if (!gp_config.credentials.url) {
+            console.log('GlobalizationPipelineService: missing credentials.url');
+            throw new Error('GlobalizationPipelineService: missing credentials.url');
+        }
+
+        // if the URL ends with “/translate”,  add “/rest”
+        if( /\/translate$/.test(gp_config.credentials.url)) {
+            gp_config.credentials.url = gp_config.credentials.url + '/rest';
+        }
     };
 
     this.$get = [ "$rootScope", "$log", "$q", "$http", "$window", function($rootScope, $log, $q, $http, $window) {
@@ -116,7 +127,7 @@ module.provider('GlobalizationPipelineService', [ function() {
          */
         function getBundleInfo(bundleId) {
             var restDefer = $q.defer();
-            var url = (gp_config.credentials.url || gp_config.credentials.uri)
+            var url = gp_config.credentials.url
                   + '/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/' + bundleId;
             if(DEBUG) {
                 console.log('[getBundleInfo] GET ' + url);
@@ -375,7 +386,7 @@ module.provider('GlobalizationPipelineService', [ function() {
 
             getCache().addBundle(gpBundleKey, languageId, restDefer.promise);
 
-            var url = (gp_config.credentials.url || gp_config.credentials.uri)
+            var url = gp_config.credentials.url
              +  '/' + gpBundleKey + '/' + languageId;
             if(DEBUG) {
                 console.log('[newCacheRequest] GET ' + url);
