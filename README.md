@@ -33,6 +33,7 @@ _Bower_ release installation:
     $ bower install gp-angular-client
 
 [![Bower version](https://badge.fury.io/bo/gp-angular-client.svg)](https://badge.fury.io/bo/gp-angular-client)    
+[![Build Status](https://travis-ci.org/IBM-Bluemix/gp-angular-client.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/gp-angular-client)
 
 _Manual_ installation:
 
