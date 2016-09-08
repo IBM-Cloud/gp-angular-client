@@ -5,7 +5,9 @@
   "moduleType": "amd",
   "author": "Scott Russell <icuintl@us.ibm.com>",
   "license": "Apache 2.0",
-  "main": ["src/gp-angular.js"],
+  "main": [
+    "src/gp-angular.js"
+  ],
   "keywords": [
     "angular",
     "globalizationPipeline",
@@ -29,5 +31,9 @@
   },
   "bugs": {
     "url": "https://github.com/IBM-Bluemix/gp-angular-client/issues"
+  },
+  "devDependencies": {
+    "angular": "^1.5.8",
+    "angular-mocks": "^1.5.8"
   }
 }
