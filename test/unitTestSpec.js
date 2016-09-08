@@ -21,32 +21,19 @@ describe("SDK test suite", function() {
     var undefinedVar;
     var gp;
     var gpVersion = "v2";
-    var gp_config = {
-            bundleId: "myBundleId",
-            loadingText: "my loading text...",
-            credentials: {
-                uri: "https://gp-dev-rest.ng.bluemix.net/translate",
-                instanceId: "myServiceInstanceHexadecimalId",
-                userId: "myReaderUserId",
-                password: "myReaderPassword"
-            }};
-    var credential_only_config = {
-            credentials: {
-                uri: "https://gp-dev-rest.ng.bluemix.net/translate",
-                instanceId: "myServiceInstanceHexadecimalId",
-                userId: "myReaderUserId",
-                password: "myReaderPassword"
-            }};
+    // These are defined in config.js and overridden in local*-config.js
+    var gp_config = GP_CONFIG;
+    var credential_only_config = GP_CREDENTIAL_ONLY_CONFIG;
     var bundle2Id = "anotherBundle";
     // url:       gp_config.credentials.uri + '/rest' + '/' + gpBundleKey
     // bundleKey: gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/' + bundleId;
-    var bundleInfoUrl      = gp_config.credentials.uri + '/rest' + '/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/' + gp_config.bundleId;
+    var bundleInfoUrl      = gp_config.credentials.url + '/rest' + '/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/' + gp_config.bundleId;
     var bundleEnglishUrl   = bundleInfoUrl + "/en";
     var bundleSpanishUrl   = bundleInfoUrl + "/es";
     var bundleMissingUrl   = bundleInfoUrl + "/de";
-    var bundle2InfoUrl     = gp_config.credentials.uri + '/rest' + '/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/' + bundle2Id;
+    var bundle2InfoUrl     = gp_config.credentials.url + '/rest' + '/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/' + bundle2Id;
     var bundle2EnglishUrl  = bundle2InfoUrl + "/en";
-    var undefinedBundleUrl = gp_config.credentials.uri + '/rest' + '/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/undefined';
+    var undefinedBundleUrl = gp_config.credentials.url + '/rest' + '/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/undefined';
     var undefinedNoLangUrl = undefinedBundleUrl + "/undefined";
 
     beforeEach(function() {

@@ -1,2 +1,4 @@
 node_modules
 bower_components
+test/local*-config.js
+npm-debug.log

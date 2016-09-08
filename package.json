@@ -9,14 +9,17 @@
   "dependencies": {},
   "devDependencies": {
     "bower": "^1.7.9",
+    "g11n-pipeline": "^1.2.3",
     "jasmine-core": "^2.5.1",
     "karma": "^1.2.0",
     "karma-firefox-launcher": "^1.0.0",
-    "karma-jasmine": "^1.0.2"
+    "karma-jasmine": "^1.0.2",
+    "request": "^2.74.0",
+    "request-promise-native": "^1.0.3"
   },
   "scripts": {
     "pretest": "bower install",
-    "test": "karma start --browsers Firefox --single-run test/unitTest.js"
+    "test": "karma start --browsers Firefox test/unitTest.js --single-run"
   },
   "repository": {
     "type": "git",
