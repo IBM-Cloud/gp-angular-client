@@ -35,6 +35,12 @@ _Bower_ release installation:
 [![Bower version](https://badge.fury.io/bo/gp-angular-client.svg)](https://badge.fury.io/bo/gp-angular-client)    
 [![Build Status](https://travis-ci.org/IBM-Bluemix/gp-angular-client.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/gp-angular-client)
 
+_npm_ release installation:
+
+    $ npm install angular-g11n-pipeline
+
+[![npm version](https://badge.fury.io/js/angular-g11n-pipeline.svg)](https://badge.fury.io/js/angular-g11n-pipeline)
+
 _Manual_ installation:
 
     $ git clone git://github.com/IBM-Bluemix/gp-angular-client.git    

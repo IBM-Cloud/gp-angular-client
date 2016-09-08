@@ -32,6 +32,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+            {pattern: 'test/config.js', watched: false, included: true, served: true},
+            {pattern: 'test/local*-config.js', watched: false, included: true, served: true},
             {pattern: 'bower_components/angular/angular.js', watched: false, included: true, served: true},
             {pattern: 'bower_components/angular-mocks/angular-mocks.js', watched: false, included: true, served: true},
             'src/gp-angular.js',
@@ -75,7 +77,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Firefox'],
 
     // let's not wait forever
     captureTimeout: 60000,

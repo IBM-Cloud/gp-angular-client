@@ -101,6 +101,10 @@ module.provider('GlobalizationPipelineService', [ function() {
          */
         function setConfig(newConfig) {
             gp_config = angular.copy(newConfig);
+            // if the URL ends with “/translate”,  add “/rest”
+            if( /\/translate$/.test(gp_config.credentials.url)) {
+                gp_config.credentials.url = gp_config.credentials.url + '/rest';
+            }
         }
 
         // cache getter with lazy initialization
