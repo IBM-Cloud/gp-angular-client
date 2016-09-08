@@ -45,6 +45,7 @@ describe("SDK test suite", function() {
             gp = _GlobalizationPipelineService_;
         });
         gp.setConfig(gp_config);
+        gp.setTargetLang('en');
     });
 
     // setup mock $http backend
