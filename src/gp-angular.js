@@ -559,21 +559,22 @@ module.provider('GlobalizationPipelineService', [ function() {
  *  <span gp-translate="aKey"></span>
  *  <span gp-translate="aKey" lang="es"></span>
  */
-module.directive('gpTranslate', ['$log', 'GlobalizationPipelineService', function($log, gp) {
+module.directive('gpTranslate', ['$log', '$interpolate', 'GlobalizationPipelineService', function($log, $interpolate, gp) {
     return {
         restrict: "AEC",
         scope: {
             gpTranslate: "@",
             key: "@?",
             lang: "@?",
-            bundle: "@?"
+            bundle: "@?",
+            values: "@?"
         },
         link: function(scope, elm, attrs) {
             scope.$watch('gpTranslate', function() {
                 var DEBUG = gp.isDebug();
 
                 if(DEBUG) {
-                    $log.debug("[gp directive] scope.gpTranslate[" + scope.gpTranslate + "] scope.key["+scope.key+"] scope.lang[" + scope.lang + "] scope.bundle[" + scope.bundle + "]");
+                    $log.debug("[gp directive] scope.gpTranslate[" + scope.gpTranslate + "] scope.key["+scope.key+"] scope.lang[" + scope.lang + "] scope.bundle[" + scope.bundle + "] scope.values[" + scope.values + "]");
                 }
 
                 var bundleKey;
@@ -597,6 +598,23 @@ module.directive('gpTranslate', ['$log', 'GlobalizationPipelineService', functio
                     if(DEBUG) {
                         $log.debug("[gp directive] promise resolved...value["+string+"]");
                     }
+
+                    // Check if the translation string has a variable expression
+                    var interpolateFn = $interpolate(string, true);
+                    if (scope.values && interpolateFn) {
+                        try {
+                            // Use the JSON data to populate the variables
+                            var dataContext = JSON.parse(scope.values);
+                            var interpolatedString = interpolateFn(dataContext);
+                            if (DEBUG) {
+                                $log.debug("interpolatedString: " + interpolatedString);
+                            }
+                            string = interpolatedString;
+                        } catch (e) {
+                            $log.error("Error evaluating optional values: " + e);
+                        }
+                    }
+
                     elm.text(string);
                 }, function(error) {
                     if(DEBUG) {

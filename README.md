@@ -140,7 +140,23 @@ Example:
 
 ```
 
+### variable replacement
+The `gp-translate` directive supports an optional `values` attribute that allows passing of custom data to it.  This is used to inject
+variables into the returned translation string.
 
+Example translation string:
+
+`"DATA-KEY-WITH-VARIABLE" : "Welcome {{user}}"`
+
+Example usage:
+
+```html
+
+    <gp-translate key="DATA-KEY-WITH-VARIABLE" bundle="someBundle" values="{{controllerAsVariable.userName}}"/>
+    <gp-translate key="DATA-KEY-WITH-VARIABLE" bundle="someBundle" values='{ "user" : "{{userNameInScope}}" }'/>
+    <gp-translate key="DATA-KEY-WITH-VARIABLE" bundle="someBundle" values='{ "user" : "John Doe" }'/>
+
+```
 
 ## Configuration
 This service needs to be configured in order to talk to the GP server. On Bluemix you will need to configure the IBM Globalization Pipeline service, define bundle(s), and define a bundle reader. Once that is completed you can take that information and fill in your AngularJS config data to talk to the service.
