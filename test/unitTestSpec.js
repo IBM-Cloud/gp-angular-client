@@ -48,6 +48,7 @@ describe("SDK test suite", function() {
     var bundle2EnglishUrl  = bundle2InfoUrl + "/en";
     var undefinedBundleUrl = gp_config.credentials.uri + '/rest' + '/' + gp_config.credentials.instanceId + '/' + gpVersion + '/bundles' + '/undefined';
     var undefinedNoLangUrl = undefinedBundleUrl + "/undefined";
+    var userJsonString = '{"user" : "John Doe"}';
 
     beforeEach(function() {
         module('gp');
@@ -74,10 +75,10 @@ describe("SDK test suite", function() {
       // translation response
       $httpBackend.when('GET', bundleEnglishUrl)
       // data.resourceStrings
-        .respond(200, {"resourceStrings": {"HELLO": "Hello World!", "GOODBYE": "Goodbye and good day."}});
+        .respond(200, {"resourceStrings": {"HELLO": "Hello World!", "GOODBYE": "Goodbye and good day.", "HELLO_USER": "Hello {{user}}"}});
       $httpBackend.when('GET', bundleSpanishUrl)
       // data.resourceStrings
-        .respond(200, {"resourceStrings": {"HELLO": "Bienvenidos a mi mundo!"}});
+        .respond(200, {"resourceStrings": {"HELLO": "Bienvenidos a mi mundo!", "HELLO_USER": "Bienvenidos {{user}}"}});
       $httpBackend.when('GET', undefinedBundleUrl)
       .respond(404, {"statusText": "not found"});
       $httpBackend.when('GET', undefinedNoLangUrl)
@@ -132,6 +133,40 @@ describe("SDK test suite", function() {
         });
 
         $httpBackend.expectGET(bundleEnglishUrl);
+        $httpBackend.flush();
+    });
+
+    it('should translate the key with undefined variable values', function() {
+        gp.translate("HELLO_USER", undefinedVar, undefinedVar, undefinedVar).then(function(resp) {
+            expect(resp).toEqual('Hello {{user}}');
+        }, function(error) {
+            console.log("translate with undefined variable values error: ", error);
+        });
+
+        $httpBackend.expectGET(bundleEnglishUrl);
+        $httpBackend.flush();
+    });
+
+    it('should translate the key with defined variable values', function() {
+        gp.translate("HELLO_USER", undefinedVar, undefinedVar, userJsonString).then(function(resp) {
+            expect(resp).toEqual('Hello John Doe');
+        }, function(error) {
+            console.log("translate with defined JSON values error: ", error);
+        });
+
+        $httpBackend.expectGET(bundleEnglishUrl);
+        $httpBackend.flush();
+    });
+
+    it('should translate the key in spanish with defined variable values', function() {
+        gp.setTargetLang("es");
+        gp.translate("HELLO_USER", undefinedVar, undefinedVar, userJsonString).then(function(resp) {
+            expect(resp).toEqual('Bienvenidos John Doe');
+        }, function(error) {
+            console.log("spanish translate with defined JSON values error:", error);
+        });
+
+        $httpBackend.expectGET(bundleSpanishUrl);
         $httpBackend.flush();
     });
 
