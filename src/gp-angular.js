@@ -47,7 +47,7 @@ module.provider('GlobalizationPipelineService', [ function() {
         }
     };
 
-    this.$get = [ "$rootScope", "$log", "$q", "$http", "$window", function($rootScope, $log, $q, $http, $window) {
+    this.$get = [ "$rootScope", "$log", "$q", "$http", "$window", "$interpolate", function($rootScope, $log, $q, $http, $window, $interpolate) {
 
         function logImpl(type, message) {
             if (type) {
@@ -294,7 +294,7 @@ module.provider('GlobalizationPipelineService', [ function() {
          * key: Key of the string in to the resource bundle targetLang:
          * [optional] target language ID
          */
-        function translate(key, bundleId, lang) {
+        function translate(key, bundleId, lang, values) {
             var translationDeferred = $q.defer();
 
             if (!key) {
@@ -303,7 +303,7 @@ module.provider('GlobalizationPipelineService', [ function() {
             }
 
             if(DEBUG) {
-                logDebug("[translate] key[" + key + "] bundleId["+bundleId+"] targetLang[" + lang + "]");
+                logDebug("[translate] key[" + key + "] bundleId["+bundleId+"] targetLang[" + lang + "] values[" + values + "]");
             }
 
             if(!gp_config) {
@@ -326,6 +326,23 @@ module.provider('GlobalizationPipelineService', [ function() {
                       logInfo("[translate] [" + key + "] undefined...returning key");
                       result = key;
                   }
+
+                  // Check if the translation string has a variable expression
+                  var interpolateFn = $interpolate(result, true);
+                  if (values && interpolateFn) {
+                      try {
+                          // Use the JSON data to populate the variables
+                          var dataContext = JSON.parse(values);
+                          var interpolatedString = interpolateFn(dataContext);
+                          if (DEBUG) {
+                              $log.debug("interpolatedString: " + interpolatedString);
+                          }
+                          result = interpolatedString;
+                      } catch (e) {
+                          $log.error("Error interpolating optional values: " + e);
+                      }
+                  }
+
                   translationDeferred.resolve(result);
               }, function errorCallback(error) {
                   result = 'ERR: ' + error.toString();
@@ -570,14 +587,15 @@ module.directive('gpTranslate', ['$log', 'GlobalizationPipelineService', functio
             gpTranslate: "@",
             key: "@?",
             lang: "@?",
-            bundle: "@?"
+            bundle: "@?",
+            values: "@?"
         },
         link: function(scope, elm, attrs) {
             scope.$watch('gpTranslate', function() {
                 var DEBUG = gp.isDebug();
 
                 if(DEBUG) {
-                    $log.debug("[gp directive] scope.gpTranslate[" + scope.gpTranslate + "] scope.key["+scope.key+"] scope.lang[" + scope.lang + "] scope.bundle[" + scope.bundle + "]");
+                    $log.debug("[gp directive] scope.gpTranslate[" + scope.gpTranslate + "] scope.key["+scope.key+"] scope.lang[" + scope.lang + "] scope.bundle[" + scope.bundle + "] scope.values[" + scope.values + "]");
                 }
 
                 var bundleKey;
@@ -588,7 +606,7 @@ module.directive('gpTranslate', ['$log', 'GlobalizationPipelineService', functio
                   bundleKey = scope.gpTranslate;
                 }
 
-                var translationPromise = gp.translate(bundleKey, scope.bundle, scope.lang);
+                var translationPromise = gp.translate(bundleKey, scope.bundle, scope.lang, scope.values);
 
                 if(DEBUG) {
                     $log.debug("[gp directive] translation called...");
@@ -601,6 +619,7 @@ module.directive('gpTranslate', ['$log', 'GlobalizationPipelineService', functio
                     if(DEBUG) {
                         $log.debug("[gp directive] promise resolved...value["+string+"]");
                     }
+
                     elm.text(string);
                 }, function(error) {
                     if(DEBUG) {
