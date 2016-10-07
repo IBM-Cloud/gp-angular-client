@@ -1,6 +1,6 @@
 {
   "name": "angular-g11n-pipeline",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "AngularJS for the Globalization Pipeline on IBM’s Bluemix",
   "main": "index.js",
   "directories": {
@@ -26,7 +26,7 @@
     "url": "https://github.com/IBM-Bluemix/gp-angular-client.git"
   },
   "keywords": [],
-  "author": "Steven R. Loomis <srloomis@us.ibm.com> (https://srl295.github.io)",
+  "author": "Globalization Pipeline Team <gaas@us.ibm.com>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/IBM-Bluemix/gp-angular-client/issues"
