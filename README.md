@@ -69,7 +69,7 @@ The url & instanceId fields are taken from the credentials of your service insta
 Once the GlobalizationPipelineService configuration is complete and you have set your application configuration to those values, you can use the custom `gp-translate` directive or service functions to handle the dynamic globalization needs of your app.
 
 ### Details 
-The SDK service API consists of two main functions. A Translate [`translate(key, lang)`] function and a function to obtain a list of the available languages [`getAvailableLanguages()`]. A general purpose custom directive [`gp-translation`] is supplied to handle simple cases of calling the translation service. The translation service function can be incorporated into more complex user defined directives should your application require more extensive directives.
+The SDK service API consists of two main functions. A Translate [`translate(key, lang)`] function and a function to obtain a list of the available languages [`getAvailableLanguages()`]. A general purpose custom directive [`gp-translate`] is supplied to handle simple cases of calling the translation service. The translation service function can be incorporated into more complex user defined directives should your application require more extensive directives.
 
 In addition to the `translate` & `getAvailableLanguages` functions, other useful functions exposed from the service are:
 * `setBundleId(newBundleId)` - enables switching of the default bundle ID used for translations.
@@ -120,7 +120,7 @@ The target language for the translation is determined in 1 of 3 ways (in order o
 
 language override on the directive example:
 ```html
-    <gp-translation key="DATA-KEY" lang="es"></gp-translation>
+    <gp-translate key="DATA-KEY" lang="es"></gp-translate>
 ```
 
 ### custom directive
@@ -130,8 +130,8 @@ Example:
 
 ```html
 
-    <H1 gp-translation="TITLE"></H1>
-    <gp-translation key="ANOTHER-DATA-KEY"></gp-translation>
+    <H1 gp-translate="TITLE"></H1>
+    <gp-translate key="ANOTHER-DATA-KEY"></gp-translate>
 
 ```
 
@@ -141,9 +141,9 @@ Example:
 
 ```html
 
-    <H1 gp-translation="TITLE" lang="es"></H1>
-    <span gp-translation="DATA-KEY" bundleId="specialBundleId"></span>
-    <gp-translation key="ANOTHER-DATA-KEY" lang="de" bundleId="someOtherBundle"></gp-translation>
+    <H1 gp-translate="TITLE" lang="es"></H1>
+    <span gp-translate="DATA-KEY" bundleId="specialBundleId"></span>
+    <gp-translate key="ANOTHER-DATA-KEY" lang="de" bundleId="someOtherBundle"></gp-translate>
 
 ```
 
