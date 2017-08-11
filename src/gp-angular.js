@@ -237,7 +237,9 @@ module.provider('GlobalizationPipelineService', [ function() {
             if(getCache().hasAvailableLanguages(bundleKey)) {
               lang = fallback(lang, getCache().getAvailableLanguages(bundleKey));
               if(lang === null) {
-                logWarning("[normalizeLanguage] fallback returned null...using source lang");
+                  if(DEBUG) {
+                      logDebug("[normalizeLanguage] fallback returned null...using source lang");
+                  }
                 lang = getCache().getSourceLanguage(bundleKey);
               }
               languageDeferred.resolve(lang);
@@ -274,7 +276,9 @@ module.provider('GlobalizationPipelineService', [ function() {
 
                   lang = fallback(lang, getCache().getAvailableLanguages(bundleKey));
                   if(lang === null) {
-                    logWarning("[normalizeLanguage] fallback returned null...using source lang");
+                      if(DEBUG) {
+                          logDebug("[normalizeLanguage] fallback returned null...using source lang");
+                      }
                     lang = getCache().getSourceLanguage(bundleKey);
                   }
                   languageDeferred.resolve(lang);
